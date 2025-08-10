@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+<html>
+ <head>
+   <link rel="stylesheet" href="New.css">
+  <title>Yêu Em</title>
+  <style>
+  body {
+   background-color : #ffceed;
+  }
+  </style>
+ </head>
+ <body>
+   <div class="space">
+
+   </div>
+  <div class="cauhoi">
+    <p>Anh muốn hỏi một câu cuối cùng <br>
+    Em đồng ý làm người yêu anh nhé </p>
+  </div>
+  <!-- HTML !-->
+
+<div class="luyen">
+
+
+  <button onclick="myFunction()" class="button-1" role="button">Có</button>
+  <button onclick="myFunction()" class="button-2" role="button">Đồng ý</button>
+  <button onclick="calculator()" class="button-3" role="button">Đố biết tỏ tình thành công hay không</button>
+</div>
+  <script>
+  function myFunction() {
+    alert("Cảm ơn em đã đồng ý làm người yêu anh. Anh sẽ cố gắng để khiến em luôn vui vẻ và hạnh phúc. Anh yêu em.");
+  }
+  </script>
+  
+    <script type ="text/javascript">
+    function calculator(){
+	var then = new Date("2021/10/14"); // month is zero based
+  now  = new Date;           // no arguments -> current date
+
+// 24 hours, 60 minutes, 60 seconds, 1000 milliseconds
+	var average = Math.round((now - then) / (1000 * 60 * 60 * 24)); // round the amount of days
+	alert("Người ta yêu được " + average +" ngày rồi nhá lêu lêu ❤️❤️");
+	window.location = 'anh.html';
+  }
+  </script>
+<audio id="myAudio" autoplay muted>
+    <source src="music/mySong.mp4" type="audio/mp4">
+</audio>
+
+<script>
+document.body.addEventListener('click', function() {
+    const audio = document.getElementById('myAudio');
+    audio.muted = false;
+    audio.play();
+}, { once: true });
+</script>
+ </body>
+ <script src="js\New.js"></script>
+</html>
