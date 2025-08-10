@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hành Trình Lưu Giữ Kỷ Niệm — Dạm Ngõ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#C99A6B;--muted:#F7F5F2;--dark:#2B2B2B;--soft:#EEE7E0;--max-width:1100px}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;margin:0;color:var(--dark);background:linear-gradient(180deg,var(--muted),#ffffff 60%);} 
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+    header{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;padding:40px 20px}
+    .hero{background:rgba(255,255,255,0.6);border-radius:20px;padding:36px;display:flex;gap:28px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    .hero .photo{flex:0 0 220px;height:220px;border-radius:18px;background:linear-gradient(135deg,var(--soft),#fff);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero .photo img{width:100%;height:100%;object-fit:cover}
+    .hero .text{flex:1}
+    h1{font-family:'Playfair Display',serif;margin:0;font-size:36px;color:var(--dark)}
+    p.lead{margin:8px 0 0;font-size:16px;color:#6b6b6b}
+    main{background:rgba(255,255,255,0.7);padding:26px;border-radius:14px}
+    aside{background:transparent}
+    .section{margin-bottom:22px}
+    .section h2{font-family:'Playfair Display',serif;margin:0 0 10px;font-size:20px}
+    .divider{height:1px;background:linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);margin:12px 0}
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .event{
+      padding:12px;
+      border-radius:10px;
+      background:var(--muted);
+      display:flex;
+      flex-direction: column;
+      gap:8px;
+    }
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .event-header .time {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .event-header button.toggle-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      color: var(--accent);
+      padding: 0 6px;
+      font-weight: 700;
+      user-select: none;
+    }
+    .event-header button.toggle-btn.open {
+      transform: rotate(90deg);
+    }
+    .what {
+      font-size: 1rem;
+      color: #444;
+      margin-left: 8px;
+    }
+    .media {
+      margin-top: 8px;
+      display: none;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .media.open {
+      display: flex;
+      flex-direction: column;
+    }
+    .media img, .media video {
+      max-width: 100%;
+      border-radius: 10px;
+      background: #000;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .media img, .media video {
+        height: 160px;
+      }
+    }
+
+    /* Fullscreen video portrait style */
+    video:-webkit-full-screen {
+      width: auto !important;
+      height: 100vh !important;
+      max-height: 100vh;
+      aspect-ratio: 9 / 16;
+      object-fit: contain !important;
+      margin: auto;
+      display: block;
+      background: black;
+    }
+    video:-moz-full-screen {
+      width: auto !important;
+      height: 100vh !important;
+      max-height: 100vh;
+      aspect-ratio: 9 / 16;
+      object-fit: contain !important;
+      margin: auto;
+      display: block;
+      background: black;
+    }
+    video:-ms-fullscreen {
+      width: auto !important;
+      height: 100vh !important;
+      max-height: 100vh;
+      aspect-ratio: 9 / 16;
+      object-fit: contain !important;
+      margin: auto;
+      display: block;
+      background: black;
+    }
+    video:fullscreen {
+      width: auto !important;
+      height: 100vh !important;
+      max-height: 100vh;
+      aspect-ratio: 9 / 16;
+      object-fit: contain !important;
+      margin: auto;
+      display: block;
+      background: black;
+    }
+    /* Lời kết */
+    .thank-you {
+      margin-top: 32px;
+      padding: 20px;
+      background: var(--soft);
+      border-radius: 14px;
+      font-size: 1.1rem;
+      color: var(--dark);
+      font-family: 'Playfair Display', serif;
+      line-height: 1.6;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+<header class="fade-in">
+  <div class="hero">
+    <div class="photo" aria-hidden="true">
+      <img src="images/damngo_ava.jpg" alt="Ảnh cặp đôi">
+    </div>
+    <div class="text">
+      <h1>Hành Trình Dạm Ngõ</h1>
+      <h1>Ngô Diệu Linh &amp; Đỗ Anh Luyện</h1>
+
+      <p style="font-size:1.1rem;color:var(--dark);margin:8px 0;">
+        📅 <strong>Dương lịch:</strong> 9:00 sáng, 05/04/2025  
+        🌙 <strong>Âm lịch:</strong> 08/03/2025
+      </p>
+      <p style="font-size:1.1rem;color:var(--dark);margin-bottom:16px;">
+        <strong>Địa điểm:</strong> Nhà gái - Vân Hà, Đông Anh, Hà Nội
+      </p>
+
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="#journey" style="text-decoration:none;display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;font-weight:600">Xem hành trình</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+    <div class="grid">
+      <main class="fade-in">
+        <section class="section" id="journey">
+          <h2>Hành trình lưu giữ — Dạm ngõ</h2>
+          <div class="divider"></div>
+
+          <div class="timeline" style="margin-top:10px">
+            <!-- Hành trình 1 -->
+            <div class="event">
+              <div class="event-header" tabindex="0" role="button" aria-expanded="false" aria-controls="media1">
+                <div class="time">1. Hai gia đình gặp gỡ</div>
+                <button class="toggle-btn" aria-label="Hiện/ẩn media">&#62;</button>
+              </div>
+              <div class="what">Bố mẹ hai gia đến nói chuyện và ăn bữa cơm thân mật</div>
+              <div class="media" id="media1" aria-hidden="true">
+              <div class="images" style="display:flex; gap:10px; margin-bottom:16px; flex-wrap: nowrap; width: 100%;">
+                <img src="images/gapgo_1.jpg" alt="Ảnh hai gia đình gặp gỡ" />
+                <img src="images/gapgo_2.jpg" alt="Ảnh hai gia đình gặp gỡ" />
+                <img src="images/gapgo_3.jpg" alt="Ảnh hai gia đình gặp gỡ" />
+                <img src="images/gapgo_4.jpg" alt="Ảnh hai gia đình gặp gỡ" />
+              </div>
+              </div>
+            </div>
+
+            <!-- Hành trình 2 -->
+            <div class="event">
+              <div class="event-header" tabindex="0" role="button" aria-expanded="false" aria-controls="media2">
+                <div class="time">2. Chuẩn bị cho dạm ngõ</div>
+                <button class="toggle-btn" aria-label="Hiện/ẩn media">&#62;</button>
+              </div>
+              <div class="what">Công tác chuẩn bị dạm ngõ của 2 gia đình</div>
+              <div class="media" id="media2" aria-hidden="true">
+              <div class="images" style="display:flex; gap:10px; margin-bottom:16px; flex-wrap: nowrap; width: 100%;">
+                <img src="images/chuanbi1.jpg" alt="Ảnh cbi dạm ngõ" />
+                <img src="images/chuanbi2.jpg" alt="Ảnh cbi dạm ngõ" />
+                <img src="images/chuanbi3.jpg" alt="Ảnh cbi dạm ngõ" />
+              </div>
+              <div class="images" style="display:flex; gap:10px; margin-bottom:16px; flex-wrap: nowrap; width: 100%;">
+                <img src="images/chuanbi4.jpg" alt="Ảnh cbi dạm ngõ" />
+                <img src="images/chuanbi5.jpg" alt="Ảnh cbi dạm ngõ" />
+                <img src="images/chuanbi6.jpg" alt="Ảnh cbi dạm ngõ" />
+                <img src="images/chuanbi7.jpg" alt="Ảnh cbi dạm ngõ" />
+              </div>
+              </div>
+            </div>
+
+            <!-- Hành trình 3 -->
+            <div class="event">
+              <div class="event-header" tabindex="0" role="button" aria-expanded="false" aria-controls="media3">
+                <div class="time">3. Dạm ngõ</div>
+                <button class="toggle-btn" aria-label="Hiện/ẩn media">&#62;</button>
+              </div>
+              <div class="what">Khoảnh khắc hai gia đình gặp nhau</div>
+              <div class="media" id="media3" aria-hidden="true" style="margin-top:12px; flex-direction: column;">
+                <div class="images" style="display:flex; gap:10px; margin-bottom:16px; flex-wrap: nowrap; width: 100%;">
+                  <img src="images/damngo01.jpg" alt="Ảnh dạm ngõ" style="border-radius:10px; max-height:180px; width:auto;" />
+                  <img src="images/damngo2.jpg" alt="Ảnh dạm ngõ 2" style="border-radius:10px; max-height:180px; width:auto;" />
+                  <img src="images/damngo3.jpg" alt="Ảnh dạm ngõ" style="border-radius:10px; max-height:180px; width:auto;" />
+                  <img src="images/damngo4.jpg" alt="Ảnh dạm ngõ 2" style="border-radius:10px; max-height:180px; width:auto;" />
+                </div>
+                <div class="images" style="display:flex; gap:10px; margin-bottom:16px; flex-wrap: nowrap; width: 100%;">
+                  <img src="images/damngo5.jpg" alt="Ảnh dạm ngõ" style="border-radius:10px; max-height:180px; width:auto;" />
+                  <img src="images/damngo6.jpg" alt="Ảnh dạm ngõ 2" style="border-radius:10px; max-height:180px; width:auto;" />
+                  <img src="images/damngo7.jpg" alt="Ảnh dạm ngõ" style="border-radius:10px; max-height:180px; width:auto;" />
+                  <img src="images/damngo8.jpg" alt="Ảnh dạm ngõ 2" style="border-radius:10px; max-height:180px; width:auto;" />
+                </div>
+                <div class="videos" style="display:flex; gap:10px; flex-wrap: nowrap; width: 100%;">
+                  <video controls preload="metadata" width="300" height="180" style="border-radius:10px; cursor:pointer;">
+                    <source src="images/videodamngo1.mp4" type="video/mp4" />
+                  </video>
+                  <video controls preload="metadata" width="300" height="180" style="border-radius:10px; cursor:pointer;">
+                    <source src="images/videodamngo2.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Lời kết -->
+          <div class="thank-you" aria-label="Lời cảm ơn">
+            <p>Cảm ơn cha mẹ hai bên gia đình đã đồng ý cho chúng con đến được với nhau.</p>
+            <p>Cảm ơn người nhà hai bên đã đến đông đủ trong ngày vui của chúng con.</p>
+            <p>Mọi người hãy đón chờ kế tiếp ở ngày ăn hỏi nhé!</p>
+          </div>
+
+        </section>
+      </main>
+
+  </div>
+
+  <!-- Phần modal vẫn giữ (nếu bạn muốn xóa thì ok) -->
+  <div id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalLabel" tabindex="-1" style="display:none;">
+    <button class="close-btn" aria-label="Đóng video">&times;</button>
+    <video controls></video>
+  </div>
+
+<script>
+  // Mở tab media khi bấm nút toggle
+  document.querySelectorAll('.event-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const btn = header.querySelector('.toggle-btn');
+      const media = header.nextElementSibling.nextElementSibling; // media là phần tử 2 cấp sau event-header
+      const isOpen = media.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      media.setAttribute('aria-hidden', !isOpen);
+      header.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Cho phép mở/đóng bằng Enter hoặc Space khi focus
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
+    });
+  });
+
+  // Giữ nguyên chức năng click ảnh mở tab mới
+  document.addEventListener('click', e => {
+    if(e.target.tagName === 'IMG') {
+      window.open(e.target.src, '_blank');
+    }
+  });
+</script>
+
+</body>
+</html>
